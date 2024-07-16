@@ -93,8 +93,8 @@ export default function Home() {
     updatedItems[categoryIndex].items[itemIndex].name = editValue;
     setItems(updatedItems);
     localStorage.setItem("items", JSON.stringify(updatedItems));
-    // setEditingItem({ categoryIndex: null, itemIndex: null });
-    // setEditValue("");
+    setEditingItem({ categoryIndex: null, itemIndex: null });
+    setEditValue("");
   };
 
   const clearCart = () => {
@@ -144,27 +144,27 @@ export default function Home() {
     };
   }, [showModal]);
 
-  useEffect(() => {
-    const handleClickOutsideEditing = (event) => {
-      if (
-        editInputRef.current &&
-        !editInputRef.current.parentElement.parentElement.contains(event.target)
-      ) {
-        setEditingItem({ categoryIndex: null, itemIndex: null });
-        setEditValue("");
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutsideEditing = (event) => {
+  //     if (
+  //       editInputRef.current &&
+  //       !editInputRef.current.parentElement.parentElement.contains(event.target)
+  //     ) {
+  //       // setEditingItem({ categoryIndex: null, itemIndex: null });
+  //       // setEditValue("");
+  //     }
+  //   };
 
-    if (editValue) {
-      document.addEventListener("mousedown", handleClickOutsideEditing);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutsideEditing);
-    }
+  //   if (editValue) {
+  //     document.addEventListener("mousedown", handleClickOutsideEditing);
+  //   } else {
+  //     document.removeEventListener("mousedown", handleClickOutsideEditing);
+  //   }
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideEditing);
-    };
-  }, [editingItem]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutsideEditing);
+  //   };
+  // }, [editingItem]);
 
   useEffect(() => {
     if (editingItem.categoryIndex !== null && editingItem.itemIndex !== null) {
