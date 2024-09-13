@@ -203,7 +203,7 @@ export default function Home() {
   }, [editingItem]);
 
   return (
-    <main className="w-screen h-screen">
+    <main>
       <div className="flex flex-col justify-center items-center">
         <h1 className="p-4 text-3xl font-bold">Cart2Go</h1>
         <div className="w-full">
