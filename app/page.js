@@ -1,10 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 
-// TODO: if an item already exists throw error or increment
-// TODO: add add bar at top for new items or serach bar to see what items are there
-// TODO: add a way to delete single item
-
 export default function Home() {
   const [items, setItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -75,7 +71,6 @@ export default function Home() {
       const moveX = e.touches[0].clientX;
       const deltaX = moveX - swipedItem.startX;
       const swipedDistance = Math.min(0, deltaX);
-
       document.querySelector(
         `#delete-${swipedItem.categoryIndex}-${swipedItem.itemIndex}`
       ).style.width = `${swipedDistance * -1}px`;
@@ -91,11 +86,9 @@ export default function Home() {
         `#item-${swipedItem.categoryIndex}-${swipedItem.itemIndex}`
       );
       const finalPosition = parseInt(itemElement.style.transform.split("(")[1]);
-
       if (finalPosition < -40) {
         itemElement.style.transform = "translateX(-65px)";
         itemElement.parentElement.classList.add("swiped");
-
         document.querySelector(
           `#delete-${swipedItem.categoryIndex}-${swipedItem.itemIndex}`
         ).style.width = `${65}px`;
@@ -103,7 +96,6 @@ export default function Home() {
         itemElement.style.transform = "translateX(0)";
         itemElement.parentElement.classList.remove("swiped");
       }
-
       setSwipedItem(null);
     }
   };
@@ -120,7 +112,6 @@ export default function Home() {
   };
 
   const checkItem = (category, uncheckedItem) => {
-    console.log("here");
     const updatedItems = items ? [...items] : [];
 
     const categoryIndex = items.findIndex(
@@ -221,7 +212,7 @@ export default function Home() {
                 {category.items.map((item, itemIndex) => (
                   <div className="flex items-center w-full" key={itemIndex}>
                     <div
-                      className={`item-${categoryIndex}-${itemIndex} item-container touch-pan-x w-full ${
+                      className={`item-${categoryIndex}-${itemIndex} item-container w-full ${
                         itemIndex === 0 ? "border-t-2" : ""
                       } ${
                         itemIndex === category.items.length - 1
